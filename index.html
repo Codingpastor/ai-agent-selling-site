@@ -1,0 +1,189 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>AI Customer Service Agent Demo</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <style>
+      @font-face {
+        font-family: 'LucideIcons';
+         /* CORRECTED URL: Using unpkg.com for the Lucide font */
+        src: url(https://cdn.jsdelivr.net/npm/lucide-static@latest/font/Lucide.ttf) format('truetype');
+      }
+      .lucide {
+        font-family: 'LucideIcons';
+        font-size: 1.5rem; /* Adjust size as needed */
+        line-height: 1;
+      }
+      body {
+        font-family: 'Inter', sans-serif;
+      }
+      /* Add styles for disabled buttons */
+      button:disabled {
+        opacity: 0.5;
+        cursor: not-allowed;
+      }
+    </style>
+</head>
+<body class="bg-gray-50 text-gray-800">
+
+    <header class="bg-white shadow-sm sticky top-0 z-50">
+        <nav class="container mx-auto px-6 py-4 flex justify-between items-center">
+            <div class="text-2xl font-bold text-indigo-600">YourBrand AI</div>
+            <a href="#contact" class="bg-indigo-600 hover:bg-indigo-700 text-white font-medium py-2 px-5 rounded-lg transition duration-300">Request Full Demo</a>
+        </nav>
+    </header>
+
+    <section class="bg-gradient-to-r from-indigo-600 to-purple-600 text-white pt-20 pb-24 text-center">
+        <div class="container mx-auto px-6">
+            <h1 class="text-4xl md:text-5xl font-bold mb-4">Revolutionize Your Customer Service with AI</h1>
+            <p class="text-lg md:text-xl mb-8 max-w-3xl mx-auto">Engage customers instantly, 24/7, with a highly intelligent, natural-sounding AI voice agent powered by ElevenLabs technology.</p>
+            <a href="#demo" class="bg-white text-indigo-600 font-semibold py-3 px-8 rounded-lg shadow-md hover:bg-gray-100 transition duration-300 mr-4">Try Live Demo</a>
+            <a href="#contact" class="border border-white text-white font-semibold py-3 px-8 rounded-lg hover:bg-white hover:text-indigo-600 transition duration-300">Learn More</a>
+        </div>
+    </section>
+
+    <section id="demo" class="py-16 bg-white">
+        <div class="container mx-auto px-6 text-center">
+            <h2 class="text-3xl font-bold mb-4 text-gray-800">Experience the AI Agent Live</h2>
+            <p class="text-gray-600 mb-10 max-w-2xl mx-auto">Click "Start Conversation" and grant microphone access to speak with the AI agent directly. (Requires Chrome/Edge browser).</p>
+
+            <div class="bg-gray-100 p-8 rounded-lg shadow-lg max-w-md mx-auto">
+                <div class="flex justify-center space-x-4 mb-6">
+                    <button id="startButton" class="bg-green-600 hover:bg-green-700 text-white font-medium py-3 px-6 rounded-lg transition duration-300 shadow-md flex items-center space-x-2">
+                        <span class="lucide">&#xea4f;</span> <span>Start Conversation</span>
+                    </button>
+                    <button id="stopButton" class="bg-red-600 hover:bg-red-700 text-white font-medium py-3 px-6 rounded-lg transition duration-300 shadow-md flex items-center space-x-2" disabled>
+                         <span class="lucide">&#xea51;</span> <span>Stop Conversation</span>
+                    </button>
+                </div>
+
+                <div class="text-lg space-y-2">
+                    <p>Connection: <span id="connectionStatus" class="font-semibold text-gray-700">Disconnected</span></p>
+                    <p>Agent Status: <span id="agentStatus" class="font-semibold text-indigo-700">Idle</span></p>
+                </div>
+
+                 <div id="error-message" class="mt-4 text-red-600 font-medium"></div>
+
+                <p class="text-sm text-gray-500 mt-6">Powered by ElevenLabs Conversational AI.</p>
+            </div>
+             <p class="text-sm text-gray-500 mt-4 max-w-2xl mx-auto">
+                Note: This demo uses the `@11labs/client` library, which needs installation via npm (`npm install @11labs/client`) and bundling (Vite/Webpack) for the `import` statement to work. Remember to replace 'YOUR_AGENT_ID' in the script.
+             </p>
+        </div>
+    </section>
+
+    <section class="py-16 bg-gray-50">
+        <div class="container mx-auto px-6">
+            <h2 class="text-3xl font-bold text-center mb-12 text-gray-800">Why Choose an AI Agent?</h2>
+            <div class="grid md:grid-cols-2 lg:grid-cols-4 gap-8">
+                <div class="text-center p-6 bg-white rounded-lg shadow-md">
+                    <div class="flex justify-center mb-4">
+                        <span class="lucide text-indigo-600">&#xe860;</span> </div>
+                    <h3 class="text-xl font-semibold mb-2">24/7 Availability</h3>
+                    <p class="text-gray-600">Provide instant support anytime, day or night, reducing wait times.</p>
+                </div>
+                <div class="text-center p-6 bg-white rounded-lg shadow-md">
+                    <div class="flex justify-center mb-4">
+                        <span class="lucide text-indigo-600">&#xf0a3;</span> </div>
+                    <h3 class="text-xl font-semibold mb-2">Enhanced CX</h3>
+                    <p class="text-gray-600">Deliver consistent, high-quality interactions that improve customer satisfaction.</p>
+                </div>
+                <div class="text-center p-6 bg-white rounded-lg shadow-md">
+                     <div class="flex justify-center mb-4">
+                        <span class="lucide text-indigo-600">&#xef0e;</span> </div>
+                    <h3 class="text-xl font-semibold mb-2">Cost Reduction</h3>
+                    <p class="text-gray-600">Lower operational costs by automating routine inquiries and tasks.</p>
+                </div>
+                <div class="text-center p-6 bg-white rounded-lg shadow-md">
+                     <div class="flex justify-center mb-4">
+                        <span class="lucide text-indigo-600">&#xe90c;</span> </div>
+                    <h3 class="text-xl font-semibold mb-2">Scalability</h3>
+                    <p class="text-gray-600">Easily handle fluctuating call volumes without needing extra staff.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section class="py-16 bg-white">
+        <div class="container mx-auto px-6">
+            <h2 class="text-3xl font-bold text-center mb-12 text-gray-800">Key Features</h2>
+            <div class="grid md:grid-cols-2 lg:grid-cols-3 gap-8 max-w-4xl mx-auto">
+                 <div class="flex items-start space-x-4">
+                    <span class="lucide text-indigo-500 mt-1">&#xea4f;</span> <div>
+                        <h4 class="text-lg font-semibold">Natural Voice Interaction</h4>
+                        <p class="text-gray-600">Leverages ElevenLabs for realistic, human-like voice conversations.</p>
+                    </div>
+                </div>
+                 <div class="flex items-start space-x-4">
+                    <span class="lucide text-indigo-500 mt-1">&#xe858;</span> <div>
+                        <h4 class="text-lg font-semibold">Intelligent Responses</h4>
+                        <p class="text-gray-600">Understands context and provides accurate, relevant answers.</p>
+                    </div>
+                </div>
+                 <div class="flex items-start space-x-4">
+                    <span class="lucide text-indigo-500 mt-1">&#xe9d6;</span> <div>
+                        <h4 class="text-lg font-semibold">Multilingual Support</h4>
+                        <p class="text-gray-600">Capable of communicating in multiple languages (optional).</p>
+                    </div>
+                </div>
+                 <div class="flex items-start space-x-4">
+                    <span class="lucide text-indigo-500 mt-1">&#xe8f8;</span> <div>
+                        <h4 class="text-lg font-semibold">Customizable</h4>
+                        <p class="text-gray-600">Tailor the agent's personality, knowledge base, and workflows.</p>
+                    </div>
+                </div>
+                 <div class="flex items-start space-x-4">
+                    <span class="lucide text-indigo-500 mt-1">&#xea18;</span> <div>
+                        <h4 class="text-lg font-semibold">Easy Integration</h4>
+                        <p class="text-gray-600">Seamlessly integrate with your existing website or CRM systems.</p>
+                    </div>
+                </div>
+                 <div class="flex items-start space-x-4">
+                    <span class="lucide text-indigo-500 mt-1">&#xe81f;</span> <div>
+                        <h4 class="text-lg font-semibold">Analytics Dashboard</h4>
+                        <p class="text-gray-600">Track performance and gain insights into customer interactions.</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section id="contact" class="py-16 bg-gradient-to-r from-indigo-600 to-purple-600 text-white">
+        <div class="container mx-auto px-6 text-center">
+            <h2 class="text-3xl font-bold mb-4">Ready to Transform Your Customer Service?</h2>
+            <p class="text-lg mb-8 max-w-2xl mx-auto">Let's discuss how our AI agent can be tailored to your specific business needs. Request a personalized demo today!</p>
+            <div class="max-w-xl mx-auto bg-white p-8 rounded-lg shadow-xl text-left text-gray-800">
+                 <form>
+                    <div class="mb-4">
+                        <label for="name" class="block text-sm font-medium text-gray-700 mb-1">Name</label>
+                        <input type="text" id="name" name="name" required class="w-full px-4 py-2 border border-gray-300 rounded-lg focus:ring-indigo-500 focus:border-indigo-500">
+                    </div>
+                    <div class="mb-4">
+                        <label for="email" class="block text-sm font-medium text-gray-700 mb-1">Company Email</label>
+                        <input type="email" id="email" name="email" required class="w-full px-4 py-2 border border-gray-300 rounded-lg focus:ring-indigo-500 focus:border-indigo-500">
+                    </div>
+                     <div class="mb-6">
+                        <label for="message" class="block text-sm font-medium text-gray-700 mb-1">Message (Optional)</label>
+                        <textarea id="message" name="message" rows="3" class="w-full px-4 py-2 border border-gray-300 rounded-lg focus:ring-indigo-500 focus:border-indigo-500"></textarea>
+                    </div>
+                    <button type="submit" class="w-full bg-indigo-600 hover:bg-indigo-700 text-white font-bold py-3 px-4 rounded-lg transition duration-300">Request Personalized Demo</button>
+                </form>
+            </div>
+        </div>
+    </section>
+
+    <footer class="bg-gray-800 text-gray-400 py-8">
+        <div class="container mx-auto px-6 text-center">
+            <p>&copy; <span id="year"></span> YourBrand AI. All rights reserved.</p>
+            <p class="text-sm mt-2">Replace 'YourBrand AI' with your actual brand name.</p>
+        </div>
+    </footer>
+
+    <script type="module" src="/src/main.js"></script>
+</body>
+</html>
