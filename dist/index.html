@@ -5,20 +5,12 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>AI Customer Service Agent Demo</title>
     <script src="https://cdn.tailwindcss.com"></script>
+    <!-- Font Awesome CDN -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css" integrity="sha512-SnH5WK+bZxgPHs44uWIX+LLJAJ9/2PkPKZ5QiAj6Ta86w+fsb2TkcmfRyVX3pBnMFcV7oQPJkl9QevSCWr3W6A==" crossorigin="anonymous" referrerpolicy="no-referrer" />
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
     <style>
-      @font-face {
-        font-family: 'LucideIcons';
-         /* CORRECTED URL: Using unpkg.com for the Lucide font */
-        src: url(https://cdn.jsdelivr.net/npm/lucide-static@latest/font/Lucide.ttf) format('truetype');
-      }
-      .lucide {
-        font-family: 'LucideIcons';
-        font-size: 1.5rem; /* Adjust size as needed */
-        line-height: 1;
-      }
       body {
         font-family: 'Inter', sans-serif;
       }
@@ -56,10 +48,10 @@
             <div class="bg-gray-100 p-8 rounded-lg shadow-lg max-w-md mx-auto">
                 <div class="flex justify-center space-x-4 mb-6">
                     <button id="startButton" class="bg-green-600 hover:bg-green-700 text-white font-medium py-3 px-6 rounded-lg transition duration-300 shadow-md flex items-center space-x-2">
-                        <span class="lucide">&#xea4f;</span> <span>Start Conversation</span>
+                        <i class="fas fa-microphone"></i> <span>Start Conversation</span>
                     </button>
                     <button id="stopButton" class="bg-red-600 hover:bg-red-700 text-white font-medium py-3 px-6 rounded-lg transition duration-300 shadow-md flex items-center space-x-2" disabled>
-                         <span class="lucide">&#xea51;</span> <span>Stop Conversation</span>
+                         <i class="fas fa-stop-circle"></i> <span>Stop Conversation</span>
                     </button>
                 </div>
 
@@ -83,26 +75,26 @@
             <h2 class="text-3xl font-bold text-center mb-12 text-gray-800">Why Choose an AI Agent?</h2>
             <div class="grid md:grid-cols-2 lg:grid-cols-4 gap-8">
                 <div class="text-center p-6 bg-white rounded-lg shadow-md">
-                    <div class="flex justify-center mb-4">
-                        <span class="lucide text-indigo-600">&#xe860;</span> </div>
+                    <div class="flex justify-center mb-4 text-3xl text-indigo-600">
+                        <i class="fas fa-clock"></i> </div>
                     <h3 class="text-xl font-semibold mb-2">24/7 Availability</h3>
                     <p class="text-gray-600">Provide instant support anytime, day or night, reducing wait times.</p>
                 </div>
                 <div class="text-center p-6 bg-white rounded-lg shadow-md">
-                    <div class="flex justify-center mb-4">
-                        <span class="lucide text-indigo-600">&#xf0a3;</span> </div>
+                    <div class="flex justify-center mb-4 text-3xl text-indigo-600">
+                        <i class="fas fa-thumbs-up"></i> </div>
                     <h3 class="text-xl font-semibold mb-2">Enhanced CX</h3>
                     <p class="text-gray-600">Deliver consistent, high-quality interactions that improve customer satisfaction.</p>
                 </div>
                 <div class="text-center p-6 bg-white rounded-lg shadow-md">
-                     <div class="flex justify-center mb-4">
-                        <span class="lucide text-indigo-600">&#xef0e;</span> </div>
+                     <div class="flex justify-center mb-4 text-3xl text-indigo-600">
+                        <i class="fas fa-dollar-sign"></i> </div>
                     <h3 class="text-xl font-semibold mb-2">Cost Reduction</h3>
                     <p class="text-gray-600">Lower operational costs by automating routine inquiries and tasks.</p>
                 </div>
                 <div class="text-center p-6 bg-white rounded-lg shadow-md">
-                     <div class="flex justify-center mb-4">
-                        <span class="lucide text-indigo-600">&#xe90c;</span> </div>
+                     <div class="flex justify-center mb-4 text-3xl text-indigo-600">
+                        <i class="fas fa-users"></i> </div>
                     <h3 class="text-xl font-semibold mb-2">Scalability</h3>
                     <p class="text-gray-600">Easily handle fluctuating call volumes without needing extra staff.</p>
                 </div>
@@ -115,37 +107,37 @@
             <h2 class="text-3xl font-bold text-center mb-12 text-gray-800">Key Features</h2>
             <div class="grid md:grid-cols-2 lg:grid-cols-3 gap-8 max-w-4xl mx-auto">
                  <div class="flex items-start space-x-4">
-                    <span class="lucide text-indigo-500 mt-1">&#xea4f;</span> <div>
+                    <i class="fas fa-microphone-alt text-indigo-500 mt-1 text-xl w-6 text-center"></i> <div>
                         <h4 class="text-lg font-semibold">Natural Voice Interaction</h4>
                         <p class="text-gray-600">Leverages ElevenLabs for realistic, human-like voice conversations.</p>
                     </div>
                 </div>
                  <div class="flex items-start space-x-4">
-                    <span class="lucide text-indigo-500 mt-1">&#xe858;</span> <div>
+                    <i class="fas fa-brain text-indigo-500 mt-1 text-xl w-6 text-center"></i> <div>
                         <h4 class="text-lg font-semibold">Intelligent Responses</h4>
                         <p class="text-gray-600">Understands context and provides accurate, relevant answers.</p>
                     </div>
                 </div>
                  <div class="flex items-start space-x-4">
-                    <span class="lucide text-indigo-500 mt-1">&#xe9d6;</span> <div>
+                    <i class="fas fa-globe text-indigo-500 mt-1 text-xl w-6 text-center"></i> <div>
                         <h4 class="text-lg font-semibold">Multilingual Support</h4>
                         <p class="text-gray-600">Capable of communicating in multiple languages (optional).</p>
                     </div>
                 </div>
                  <div class="flex items-start space-x-4">
-                    <span class="lucide text-indigo-500 mt-1">&#xe8f8;</span> <div>
+                    <i class="fas fa-cog text-indigo-500 mt-1 text-xl w-6 text-center"></i> <div>
                         <h4 class="text-lg font-semibold">Customizable</h4>
                         <p class="text-gray-600">Tailor the agent's personality, knowledge base, and workflows.</p>
                     </div>
                 </div>
                  <div class="flex items-start space-x-4">
-                    <span class="lucide text-indigo-500 mt-1">&#xea18;</span> <div>
+                    <i class="fas fa-puzzle-piece text-indigo-500 mt-1 text-xl w-6 text-center"></i> <div>
                         <h4 class="text-lg font-semibold">Easy Integration</h4>
                         <p class="text-gray-600">Seamlessly integrate with your existing website or CRM systems.</p>
                     </div>
                 </div>
                  <div class="flex items-start space-x-4">
-                    <span class="lucide text-indigo-500 mt-1">&#xe81f;</span> <div>
+                    <i class="fas fa-chart-bar text-indigo-500 mt-1 text-xl w-6 text-center"></i> <div>
                         <h4 class="text-lg font-semibold">Analytics Dashboard</h4>
                         <p class="text-gray-600">Track performance and gain insights into customer interactions.</p>
                     </div>
