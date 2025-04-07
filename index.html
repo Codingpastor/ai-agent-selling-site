@@ -19,6 +19,49 @@
         opacity: 0.5;
         cursor: not-allowed;
       }
+      /* Modal Styles */
+      .modal-overlay {
+        position: fixed;
+        top: 0;
+        left: 0;
+        right: 0;
+        bottom: 0;
+        background-color: rgba(0, 0, 0, 0.6);
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        z-index: 1000; /* Ensure it's on top */
+        opacity: 0;
+        visibility: hidden;
+        transition: opacity 0.3s ease, visibility 0.3s ease;
+      }
+      .modal-overlay.visible {
+        opacity: 1;
+        visibility: visible;
+      }
+      .modal-content {
+        background-color: white;
+        padding: 2rem;
+        border-radius: 0.5rem;
+        box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+        max-width: 500px;
+        width: 90%;
+        text-align: left;
+      }
+      .modal-content p {
+        margin-bottom: 1rem;
+        line-height: 1.6;
+      }
+      .modal-content a {
+        color: #4f46e5; /* Indigo-600 */
+        text-decoration: underline;
+      }
+      .modal-buttons {
+        display: flex;
+        justify-content: flex-end;
+        gap: 0.5rem;
+        margin-top: 1.5rem;
+      }
     </style>
 </head>
 <body class="bg-gray-50 text-gray-800">
@@ -177,5 +220,20 @@
     </footer>
 
     <script type="module" src="/src/main.js"></script>
+
+    <!-- Consent Modal -->
+    <div id="consentModal" class="modal-overlay">
+        <div class="modal-content">
+            <h3 class="text-xl font-semibold mb-4">Consent Required</h3>
+            <p class="text-gray-700">
+                By clicking "Agree," and each time I interact with this AI agent, I consent to the recording, storage, and sharing of my communications with third-party service providers, and as described in the <a href="https://elevenlabs.io/terms-of-use" target="_blank" rel="noopener noreferrer">Privacy Policy</a>. If you do not wish to have your conversations recorded, please refrain from using this service.
+            </p>
+            <div class="modal-buttons">
+                <button id="cancelConsentButton" class="bg-gray-300 hover:bg-gray-400 text-gray-800 font-medium py-2 px-4 rounded-lg transition duration-300">Cancel</button>
+                <button id="agreeConsentButton" class="bg-indigo-600 hover:bg-indigo-700 text-white font-medium py-2 px-4 rounded-lg transition duration-300">Agree</button>
+            </div>
+        </div>
+    </div>
+
 </body>
 </html>

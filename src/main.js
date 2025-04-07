@@ -7,6 +7,9 @@ const stopButton = document.getElementById('stopButton');
 const connectionStatus = document.getElementById('connectionStatus');
 const agentStatus = document.getElementById('agentStatus');
 const errorMessage = document.getElementById('error-message');
+const consentModal = document.getElementById('consentModal');
+const agreeConsentButton = document.getElementById('agreeConsentButton');
+const cancelConsentButton = document.getElementById('cancelConsentButton');
 
 // Variable for the conversation instance
 let conversation;
@@ -21,15 +24,37 @@ function displayError(message) {
     agentStatus.textContent = 'Idle';
 }
 
-// --- Function to start the conversation ---
-async function startConversation() {
-    errorMessage.textContent = '';
+// --- Function to show the consent modal ---
+function showConsentModal() {
+    errorMessage.textContent = ''; // Clear previous errors
+    startButton.disabled = true; // Disable start button while modal is open
+    if (consentModal) {
+        consentModal.classList.add('visible');
+    } else {
+        console.error("Consent modal element not found!");
+        // Fallback or display error if modal doesn't exist
+        displayError("Consent dialog could not be displayed.");
+        startButton.disabled = false; // Re-enable start button
+    }
+}
+
+// --- Function to hide the consent modal ---
+function hideConsentModal() {
+    if (consentModal) {
+        consentModal.classList.remove('visible');
+    }
+}
+
+// --- Function to actually start the connection (called after consent) ---
+async function proceedWithConversation() {
     agentStatus.textContent = 'Connecting...';
-    startButton.disabled = true;
+    // startButton is already disabled from showConsentModal
 
     // Check if Conversation class loaded correctly (basic check)
-     if (typeof Conversation === 'undefined') {
+    if (typeof Conversation === 'undefined') {
         displayError("ElevenLabs 'Conversation' class not loaded. Ensure 'npm install @11labs/client' was run and Vite is bundling correctly.");
+        // Re-enable start button if Conversation class isn't loaded
+        startButton.disabled = false;
         return;
     }
 
@@ -41,11 +66,13 @@ async function startConversation() {
         // 2. Start the conversation session using Agent ID
         // IMPORTANT: Replace 'YOUR_AGENT_ID' with your actual agent ID from ElevenLabs
         const agentId = 'QsTTVLzhC1FU3U8fjgrH'; // <<<--- IMPORTANT: REPLACE THIS ID!
-        if (agentId === 'YOUR_AGENT_ID') {
-             displayError("Please replace 'YOUR_AGENT_ID' in src/main.js with your actual ElevenLabs agent ID.");
-             agentStatus.textContent = 'Config Error';
-             // Keep start button disabled until user fixes the ID
-             return;
+        // CORRECTED CHECK: Use the actual placeholder string from the file
+        if (agentId === 'QsTTVLzhC1FU3U8fjgrH') {
+            displayError("Please replace 'YOUR_AGENT_ID' in src/main.js with your actual ElevenLabs agent ID.");
+            agentStatus.textContent = 'Config Error';
+            // Re-enable start button if config error
+            startButton.disabled = false;
+            return;
         }
 
         console.log(`Starting conversation session with Agent ID: ${agentId}...`);
@@ -130,8 +157,26 @@ async function stopConversation() {
 }
 
 // --- Add event listeners ---
-startButton.addEventListener('click', startConversation);
+// Original start button now shows the modal
+startButton.addEventListener('click', showConsentModal);
 stopButton.addEventListener('click', stopConversation);
+
+// Modal button listeners
+if (agreeConsentButton) {
+    agreeConsentButton.addEventListener('click', () => {
+        hideConsentModal();
+        proceedWithConversation(); // Call the function to start connection
+    });
+}
+
+if (cancelConsentButton) {
+    cancelConsentButton.addEventListener('click', () => {
+        hideConsentModal();
+        startButton.disabled = false; // Re-enable the main start button
+        agentStatus.textContent = 'Idle'; // Reset status if needed
+    });
+}
+
 
 // --- Set current year in footer ---
 // Ensure the element exists before trying to set textContent
