@@ -67,7 +67,7 @@ async function proceedWithConversation() {
         // IMPORTANT: Replace 'YOUR_AGENT_ID' with your actual agent ID from ElevenLabs
         const agentId = 'QsTTVLzhC1FU3U8fjgrH'; // <<<--- IMPORTANT: REPLACE THIS ID!
         // CORRECTED CHECK: Use the actual placeholder string from the file
-        if (agentId === 'QsTTVLzhC1FU3U8fjgrH') {
+        if (agentId === 'YOUR_AGENT_ID') {
             displayError("Please replace 'YOUR_AGENT_ID' in src/main.js with your actual ElevenLabs agent ID.");
             agentStatus.textContent = 'Config Error';
             // Re-enable start button if config error
